@@ -2,23 +2,6 @@
 
 Sebuah purwarupa aplikasi *Full-Stack* (Sistem Dompet Digital/E-Wallet ringan) yang dibangun eksklusif sebagai manifestasi penugasan *Technical Test*. Proyek ini mendemonstrasikan implementasi *Clean Architecture*, rutinitas isolasi basis data di Golang, pemrosesan antrean *Background Worker* secara asinkron, serta penataan *Frontend* interaktif nan rapi.
 
-## 🛠️ Technology Stack
-
-**Sisi Backend:**
-- Bahasa Algoritma: **Go (Golang)**
-- *Web Framework*: **Gin Web Framework**
-- ORM Basis Data: **GORM (MySQL)**
-- Sistem Autentikasi: **JWT (JSON Web Token)**
-- Proses Asinkron: **Goroutines & Channels** (*Digunakan sebagai transfer mutasi antrean latar belakang*)
-
-**Sisi Frontend:**
-- Fondasi Utama: **React 19 + Bundle Vite**
-- Kerangka Gaya (*Styling*): **Native Tailwind CSS** (Eksklusif dibuat tanpa mengandalkan perpustakaan eksternal rentan render seperti flowbite dsb).
-- *Routing*: **React Router DOM v7**
-- Klien Rute API: **Axios** (Terpasang *Interceptors* yang secara dinamis menyuntikkan dan memverifikasi *Token* lokal ke tajuk Otorisasi keamanan server).
-
----
-
 ## ✨ Fitur-Fitur Utama
 
 1. **Sistem Autentikasi**: *Register* dan *Login* pengguna terenskripsi dengan balasan JWT *Token*.
@@ -61,4 +44,3 @@ cd frontend
 npm install
 npm run dev
 ```
-*(Antarmuka situs kini sukses disiarkan di peramban dan bisa Anda buka ke `http://localhost:5173` dalam mode interaktif).*
