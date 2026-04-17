@@ -7,8 +7,7 @@ import (
 	"backend-service/workers"
 	"errors"
 
-	"fmt"
-	"time"
+	"github.com/google/uuid"
 )
 
 func TopUp(userID string, amount int64) (*models.Transaction, error) {
@@ -29,7 +28,7 @@ func TopUp(userID string, amount int64) (*models.Transaction, error) {
 	}
 
 	transaction := &models.Transaction{
-		ID:              fmt.Sprintf("TRX-%s%03d", time.Now().Format("20060102150405"), time.Now().UnixMilli()%1000),
+		ID:              uuid.NewString(),
 		UserID:          user.ID,
 		TransactionType: "CREDIT",
 		Amount:          amount,
@@ -70,7 +69,7 @@ func Payment(userID string, amount int64, remarks string) (*models.Transaction, 
 	}
 
 	transaction := &models.Transaction{
-		ID:              fmt.Sprintf("TRX-%s%03d", time.Now().Format("20060102150405"), time.Now().UnixMilli()%1000),
+		ID:              uuid.NewString(),
 		UserID:          user.ID,
 		TransactionType: "DEBIT",
 		Amount:          amount,
@@ -125,7 +124,7 @@ func Transfer(senderID, targetUserID string, amount int64, remarks string) (*mod
 
 	tx.Commit()
 
-	transferIDSender := fmt.Sprintf("TRX-%s%03d", time.Now().Format("20060102150405"), time.Now().UnixMilli()%1000)
+	transferIDSender := uuid.NewString()
 
 	senderTx := models.Transaction{
 		ID:              transferIDSender,
@@ -140,7 +139,7 @@ func Transfer(senderID, targetUserID string, amount int64, remarks string) (*mod
 	}
 
 	receiverTx := models.Transaction{
-		ID:              fmt.Sprintf("TRX-%s%03d", time.Now().Format("20060102150405"), time.Now().UnixMilli()%1000),
+		ID:              uuid.NewString(),
 		UserID:          target.ID,
 		TransactionType: "CREDIT",
 		Amount:          amount,

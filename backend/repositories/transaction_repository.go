@@ -12,6 +12,6 @@ func CreateTransactionTx(tx *gorm.DB, transaction *models.Transaction) error {
 
 func GetTransactionsByUserID(userID string) ([]models.Transaction, error) {
 	var transactions []models.Transaction
-	err := config.DB.Where("user_id = ?", userID).Order("created_at desc").Find(&transactions).Error
+	err := config.DB.Preload("RelatedUser").Where("user_id = ?", userID).Order("created_at desc").Find(&transactions).Error
 	return transactions, err
 }

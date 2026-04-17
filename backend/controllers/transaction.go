@@ -131,12 +131,22 @@ func TransactionsReport(c *gin.Context) {
 
 	var results []gin.H
 	for _, tx := range transactions {
+		var targetInfo string
+		if tx.Feature == "TRANSFER" && tx.RelatedUser != nil {
+			if tx.TransactionType == "DEBIT" {
+				targetInfo = "To: " + tx.RelatedUser.FirstName + " (" + tx.RelatedUser.PhoneNumber + ")"
+			} else {
+				targetInfo = "From: " + tx.RelatedUser.FirstName + " (" + tx.RelatedUser.PhoneNumber + ")"
+			}
+		}
+
 		results = append(results, gin.H{
 			"transaction_id":   tx.ID,
 			"status":           "SUCCESS",
 			"transaction_type": tx.TransactionType,
 			"amount":           tx.Amount,
 			"remarks":          tx.Remarks,
+			"target_info":      targetInfo,
 			"balance_before":   tx.BalanceBefore,
 			"balance_after":    tx.BalanceAfter,
 			"created_date":     tx.CreatedAt.Format("2006-01-02 15:04:05"),

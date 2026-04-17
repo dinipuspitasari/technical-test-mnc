@@ -28,7 +28,10 @@ export default function TransactionTable({ transactions }) {
                 </span>
               </td>
               <td className="px-6 py-4 font-semibold text-gray-900">Rp {tx.amount.toLocaleString()}</td>
-              <td className="px-6 py-4">{tx.remarks || '-'}</td>
+              <td className="px-6 py-4">
+                <div>{tx.remarks || '-'}</div>
+                {tx.target_info && <div className="text-xs text-blue-600 font-semibold mt-1">{tx.target_info}</div>}
+              </td>
               <td className="px-6 py-4 text-gray-600">Rp {tx.balance_before.toLocaleString()}</td>
               <td className="px-6 py-4 font-bold text-gray-900">Rp {tx.balance_after.toLocaleString()}</td>
             </tr>

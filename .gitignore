@@ -1,4 +1,4 @@
 .agents/
 backend/.env
 frontend/node_modules/
-backend/test_api
+node_modules/
